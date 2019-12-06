@@ -14,7 +14,14 @@ class Thermostat {
   up() {
     this._temperature++;
   }
+
   down() {
-    if (this._temperature > this._MINIMUM_TEMPERATURE) this._temperature--;
+    if (this._isMinimumTemperature()) return;
+
+    this._temperature--;
+  }
+
+  _isMinimumTemperature() {
+    return this._temperature === this._MINIMUM_TEMPERATURE;
   }
 }
