@@ -31,6 +31,18 @@ class Thermostat {
     this._temperature = 20;
   }
 
+  energyUsage() {
+    if (this.temperature < 18) {
+      return "low-usage";
+    }
+
+    if (this.temperature < 25) {
+      return "medium-usage";
+    } else {
+      return "high-usage";
+    }
+  }
+
   switchPowerSavingModeOff() {
     this._MAXIMUM_TEMPERATURE = 32;
     this._isPowerSavingMode = false;

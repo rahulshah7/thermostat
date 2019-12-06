@@ -67,8 +67,53 @@ describe("Thermostat", function() {
 
   describe("#reset", function() {
     it("resets the temperature back to 20 degrees", function() {
+      for (let i = 0; i < 5; i++) {
+        thermostat.up();
+      }
       thermostat.reset();
       expect(thermostat.temperature).toEqual(thermostat._DEFAULT_TEMPERATURE);
+    });
+  });
+
+  // You can ask about the thermostat's current energy usage:
+  //  , < 25 is medium-usage, anything else is high-usage.
+  describe("#energyUsage", function() {
+    it("for < 18, returns 'low-usage'", function() {
+      for (let i = 0; i < 5; i++) {
+        thermostat.down();
+      }
+
+      expect(thermostat.temperature).toEqual(
+        thermostat._DEFAULT_TEMPERATURE - 5
+      );
+
+      expect(thermostat.energyUsage()).toBe("low-usage");
+    });
+
+    it("for < 25, returns 'medium-usage'", function() {
+      for (let i = 0; i < 2; i++) {
+        thermostat.up();
+      }
+
+      expect(thermostat.temperature).toEqual(
+        thermostat._DEFAULT_TEMPERATURE + 2
+      );
+
+      expect(thermostat.energyUsage()).toBe("medium-usage");
+    });
+
+    it("for 30, returns 'high-usage'", function() {
+      thermostat.switchPowerSavingModeOff();
+
+      for (let i = 0; i < 10; i++) {
+        thermostat.up();
+      }
+
+      expect(thermostat.temperature).toEqual(
+        thermostat._DEFAULT_TEMPERATURE + 10
+      );
+
+      expect(thermostat.energyUsage()).toBe("high-usage");
     });
   });
 });
