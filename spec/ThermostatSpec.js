@@ -37,4 +37,38 @@ describe("Thermostat", function() {
       expect(thermostat.temperature).toEqual(thermostat._MINIMUM_TEMPERATURE);
     });
   });
+
+  describe("#isPowerSavingMode", function() {
+    it("is on by default", function() {
+      expect(thermostat.isPowerSavingMode).toBe(true);
+    });
+  });
+
+  describe("#switchPowerSavingModeOn", function() {
+    it("has a maximum temperature of 25 degrees", function() {
+      for (let i = 0; i < 15; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.isPowerSavingMode).toEqual(true);
+      expect(thermostat.temperature).toEqual(25);
+    });
+  });
+
+  describe("#switchPowerSavingModeOff", function() {
+    it("has a maximum temperature of 32 degrees", function() {
+      thermostat.switchPowerSavingModeOff();
+      for (let i = 0; i < 15; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.isPowerSavingMode).toEqual(false);
+      expect(thermostat.temperature).toEqual(32);
+    });
+  });
+
+  describe("#reset", function() {
+    it("resets the temperature back to 20 degrees", function() {
+      thermostat.reset();
+      expect(thermostat.temperature).toEqual(thermostat._DEFAULT_TEMPERATURE);
+    });
+  });
 });
