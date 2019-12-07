@@ -11,6 +11,12 @@ describe("Thermostat", function() {
     it("starts at 20 degrees", function() {
       expect(thermostat.temperature).toEqual(thermostat._DEFAULT_TEMPERATURE);
     });
+
+    it("does not allow the temperature to be set", function() {
+      expect(function() {
+        thermostat.temperature = 25;
+      }).toThrowError(TypeError);
+    });
   });
 
   describe("#up", function() {
