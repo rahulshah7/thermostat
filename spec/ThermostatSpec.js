@@ -58,6 +58,26 @@ describe("Thermostat", function() {
       expect(thermostat.isPowerSavingMode).toEqual(true);
       expect(thermostat.temperature).toEqual(25);
     });
+
+    it("reduces the temperature to 25 degrees if above", function() {
+      thermostat.switchPowerSavingModeOff();
+      for (let i = 0; i < 30; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.temperature).toEqual(32);
+      thermostat.switchPowerSavingModeOn();
+      expect(thermostat.temperature).toEqual(25);
+    });
+
+    it("does not change temperature if below 25 degrees", function() {
+      thermostat.switchPowerSavingModeOff();
+      for (let i = 0; i < 1; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.temperature).toEqual(21);
+      thermostat.switchPowerSavingModeOn();
+      expect(thermostat.temperature).toEqual(21);
+    });
   });
 
   describe("#switchPowerSavingModeOff", function() {

@@ -4,6 +4,7 @@ class Thermostat {
   constructor() {
     this._DEFAULT_TEMPERATURE = 20;
     this._MINIMUM_TEMPERATURE = 10;
+    this._MAXIMUM_TEMPERATURE = 25;
     this._temperature = this._DEFAULT_TEMPERATURE;
     this.switchPowerSavingModeOn();
   }
@@ -50,6 +51,7 @@ class Thermostat {
 
   switchPowerSavingModeOn() {
     this._MAXIMUM_TEMPERATURE = 25;
+    this._temperature = Math.min(this.temperature, this._MAXIMUM_TEMPERATURE);
     this._isPowerSavingMode = true;
   }
 
