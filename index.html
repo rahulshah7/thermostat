@@ -12,14 +12,12 @@
     </header>
     <main>
       <section class="display">
-        <div class="display--temperature">32</div>
-        <div class="display--info">High Usage</div>
+        <div class="display--temperature">##</div>
       </section>
       <section class="controls">
         <button class="controls--up">UP</button>
         <button class="controls--down">DOWN</button>
         <button class="controls--reset">RESET</button>
-        <button class="controls--energy-usage">INFO</button>
         <label>
           Power Saving Mode:
           <input type="checkbox" class="controls--power-saving-mode" />
@@ -27,5 +25,11 @@
       </section>
     </main>
     <script src="./src/Thermostat.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./src/interface.js"></script>
   </body>
 </html>
