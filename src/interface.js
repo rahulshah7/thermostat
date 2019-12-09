@@ -14,6 +14,18 @@ $(document).ready(function() {
     $(".display--temperature-background").addClass(thermostat.energyUsage());
   }
 
+  function updateWeatherDisplay(city) {
+    $.getJSON(
+      `https://api.weatherbit.io/v2.0/current?key=396a74755ade41ecb83d23bb3011222e&city=${city}`,
+      function(res) {
+        const weatherData = res.data[0];
+        $(".display--weather--temperature")[0].innerText = weatherData.temp;
+        $(".display--weather--city")[0].innerText = weatherData.city_name;
+        $(".display--weather--country")[0].innerText = weatherData.country_code;
+      }
+    );
+  }
+
   // Event Listeners
 
   $(".controls--up").on("click", function() {
@@ -42,4 +54,5 @@ $(document).ready(function() {
 
   // Function Calls
   updateTemperatureDisplay();
+  updateWeatherDisplay("LondonUK");
 });
