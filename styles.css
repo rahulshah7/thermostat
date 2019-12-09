@@ -1,0 +1,15 @@
+.display--temperature-degrees {
+  color: white;
+}
+
+.high-usage {
+  background-color: red;
+}
+
+.medium-usage {
+  background-color: black;
+}
+
+.low-usage {
+  background-color: green;
+}

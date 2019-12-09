@@ -4,7 +4,14 @@ $(document).ready(function() {
   // Functions
 
   function updateTemperatureDisplay() {
-    $(".display--temperature")[0].innerText = thermostat.temperature;
+    $(".display--temperature-degrees")[0].innerText = thermostat.temperature;
+    $(".display--temperature-background").removeClass(function(
+      _index,
+      className
+    ) {
+      return className.match(/\w+-usage/)[0];
+    });
+    $(".display--temperature-background").addClass(thermostat.energyUsage());
   }
 
   // Event Listeners
