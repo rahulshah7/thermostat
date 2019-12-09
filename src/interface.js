@@ -28,6 +28,10 @@ $(document).ready(function() {
 
   // Event Listeners
 
+  $(".controls--weather-city").on("change", function() {
+    updateWeatherDisplay(this.value);
+  });
+
   $(".controls--up").on("click", function() {
     thermostat.up();
     updateTemperatureDisplay();
